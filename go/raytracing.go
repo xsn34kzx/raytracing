@@ -3,10 +3,15 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 	"time"
 )
 
 func main() {
+	if len(os.Args) != 2 {
+		log.Fatal("Invalid amount of arguments!")
+	}
+
 	// Image 
 	imageWidth := 256;
 	imageHeight := 256;
@@ -14,15 +19,11 @@ func main() {
 	// Render
 	renderStart := time.Now()
 
-	fmt.Printf("P3\n%v %v\n255\n", imageWidth, imageHeight)
-	for j := range imageHeight {
-		for i := range imageWidth {
-			r := uint8(float64(i) / float64(imageWidth - 1) * 255)
-			g := uint8(float64(j) / float64(imageHeight - 1) * 255)
-			b := 0
-
-			fmt.Printf("%v %v %v\n", r, g, b)
-		}
+	switch os.Args[1] {
+	case "hello_world":
+		helloWorldScene(imageWidth, imageHeight)
+	default:
+		fmt.Println("Not a valid scene!")
 	}
 
 	renderEnd := time.Since(renderStart)
