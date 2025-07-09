@@ -20,6 +20,8 @@ func main() {
 	renderStart := time.Now()
 
 	switch os.Args[1] {
+	case "gradient":
+		gradientScene(imageWidth, imageHeight)
 	case "hello_world":
 		helloWorldScene(imageWidth, imageHeight)
 	default:
